@@ -137,8 +137,9 @@ public class MegaTests {
         driver.get(url);
         WebElement envelope = driver.findElement(By.xpath("//div[@id='chat-container']"));
         envelope.click();
-        Thread.sleep(10000);
-        WebElement input3 = driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/div[2]/div[2]/div[2]/div[1]"));
+        Thread.sleep(2000);
+        WebElement input3 = driver.findElement(By.id("carrot-messenger-frame"));
+
 
     };
 
@@ -173,14 +174,20 @@ public class MegaTests {
     };
 
     @Test
-    public void proituTest() throws InterruptedException {
-        driver.get("https://skillfactory.ru/courses");
+    public void onlineKursi() throws InterruptedException {
+        driver.get(url);
 
-
-        WebElement plashka = (new WebDriverWait(driver, Duration.ofSeconds(90000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='rec594936242']/div/div/div[7]/a"))));
         Actions actions = new Actions(driver);
-        actions.moveToElement(driver.findElement(By.xpath("//*[@id='rec567539571'/div/div/div[168]/a"))).doubleClick().build().perform();
-        plashka.click();
+        actions.moveToElement(driver.findElement(By.xpath("//a[text()='онлайн-курсы']"))).build().perform();
+        WebElement vseOnlineKursi = (new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Все онлайн-курсы']"))));
+        WebElement testirovanie = (new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Тестирование']"))));
+        WebElement analitika = (new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Аналитика данных']"))));
+        WebElement profgramirovanie = (new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Программирование']"))));
+        WebElement intensivnie = (new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Интенсивные курсы']"))));
+        WebElement webRazrab = (new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Веб-разработка']"))));
+        WebElement bezopasnost = (new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Безопасность']"))));
+        WebElement marketing = (new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Маркетинг']"))));
+        WebElement dizain = (new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Дизайн']"))));
 
     };
 
