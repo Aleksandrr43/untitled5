@@ -28,7 +28,7 @@ public class MegaTests {
 
     static {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Aleks\\IdeaProjects\\untitled5\\src\\test\\resources\\chromedriver.exe");
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         driver.manage().window().maximize();
     }
 
@@ -38,16 +38,16 @@ public class MegaTests {
     public void form() {
         driver.get(url);
 
-        WebElement inputName = driver.findElement(By.xpath("//input[@aria-label='name']"));
+        WebElement inputName = driver.findElement(By.xpath("//form[@name='form562643444']//input[@aria-label='name']"));
         inputName.sendKeys("Алёша");
 
-        WebElement inputMail = driver.findElement(By.xpath("//input[@aria-label='email']"));
+        WebElement inputMail = driver.findElement(By.xpath("//form[@name='form562643444']//input[@aria-label='email']"));
         inputMail.sendKeys("12@1.ru");
 
-        WebElement inputPhone = driver.findElement(By.xpath("//input[@type='tel']"));
+        WebElement inputPhone = driver.findElement(By.xpath("//form[@name='form562643444']//input[@type='tel']"));
         inputPhone.sendKeys("9999999998");
 
-        WebElement otpravit = driver.findElement(By.xpath("//button[@type='submit']"));
+        WebElement otpravit = driver.findElement(By.xpath("//form[@name='form562643444']//button[@type='submit']"));
         otpravit.click();
 
         WebElement spasibo = driver.findElement(By.xpath("//div[@id='tildaformsuccesspopuptext']"));
@@ -57,49 +57,43 @@ public class MegaTests {
     @Test
     public void form2() {
         driver.get(url);
-        WebElement inputName = driver.findElement(By.xpath("(//input[@aria-label='name'])[2]"));
+        WebElement inputName = driver.findElement(By.xpath("//form[@name='form569269576']//input[@aria-label='name']"));
         inputName.sendKeys("12");
 
-        WebElement inputMail = driver.findElement(By.xpath("(//input[@aria-label='email'])[2]"));
+        WebElement inputMail = driver.findElement(By.xpath("//form[@name='form569269576']//input[@aria-label='email']"));
         inputMail.sendKeys("12");
 
-        WebElement inputPhone = driver.findElement(By.xpath("(//input[@type='tel'])[2]"));
+        WebElement inputPhone = driver.findElement(By.xpath("//form[@name='form569269576']//input[@type='tel']"));
         inputPhone.sendKeys("9999");
 
-        WebElement otpravit = driver.findElement(By.xpath("(//button[@type='submit'])[2]"));
+        WebElement otpravit = driver.findElement(By.xpath("//form[@name='form569269576']//button[@type='submit']"));
         otpravit.click();
 
         WebElement error = driver.findElement(By.id("tilda-popup-for-error"));
-
-
     };
 
     @Test
     public void formErorr() {
         driver.get(url);
-        WebElement inputName = driver.findElement(By.xpath("//input[@aria-label='name']"));
+        WebElement inputName = driver.findElement(By.xpath("//form[@name='form562643444']//input[@aria-label='name']"));
         inputName.sendKeys("12");
-        WebElement inputMail = driver.findElement(By.xpath("//input[@aria-label='email']"));
+        WebElement inputMail = driver.findElement(By.xpath("//form[@name='form562643444']//input[@aria-label='email']"));
         inputMail.sendKeys("12");
-        WebElement inputPhone = driver.findElement(By.xpath("//input[@type='tel']"));
+        WebElement inputPhone = driver.findElement(By.xpath("//form[@name='form562643444']//input[@type='tel']"));
         inputPhone.sendKeys("9999");
-        WebElement otpravit = driver.findElement(By.xpath("//button[@type='submit']"));
+        WebElement otpravit = driver.findElement(By.xpath("//form[@name='form562643444']//button[@type='submit']"));
         otpravit.click();
         WebElement podskazkaName = driver.findElement(By.xpath("//div[text()='Укажите, пожалуйста, имя']"));
         WebElement podskazkaEmail = driver.findElement(By.xpath("//div[text()='Укажите, пожалуйста, корректный email']"));
         WebElement podskazkaTel = driver.findElement(By.xpath("//div[text()='Слишком короткое значение']"));
-
     };
 
 
-
-
-
     @Test
-    public void testirovanie() {
+    public void phyton() {
         driver.get(url);
         String windows1 = driver.getWindowHandle();
-        WebElement progr = driver.findElement(By.xpath("//*[@id=\"rec566444333\"]/div/div/div[87]/a"));
+        WebElement progr = driver.findElement(By.xpath("//div[@data-elem-id='1679428011406']"));
         progr.click();
         Set<String> currentWindows = driver.getWindowHandles();
         String windows2 = null;
@@ -125,29 +119,25 @@ public class MegaTests {
         otpravit.click();
 
         WebElement spasibo = driver.findElement(By.xpath("//span[text()='Спасибо, мы получили вашу заявку! ']"));
-         String ad = spasibo.getText();
-        System.out.println(ad);
-
+        driver.close();
+        driver.switchTo().window(windows1);
     };
 
 
     @Test
-    public void bot() throws InterruptedException {
-
+    public void chat () throws InterruptedException {
         driver.get(url);
         WebElement envelope = driver.findElement(By.xpath("//div[@id='chat-container']"));
         envelope.click();
         Thread.sleep(2000);
         WebElement input3 = driver.findElement(By.id("carrot-messenger-frame"));
-
-
     };
 
     @Test
     public void youtube() {
         driver.get(url);
         String windows1 = driver.getWindowHandle();
-        WebElement clickLink = driver.findElement(By.xpath("//*[@id='rec596444548']/div/div/div[6]/a"));
+        WebElement clickLink = driver.findElement(By.xpath("//div[@data-elem-id='1676892134988']"));
         clickLink.click();
         Set<String> currentWindows = driver.getWindowHandles();
         String windows2 = null;
@@ -157,26 +147,31 @@ public class MegaTests {
                 break;
             }
         };
-
         driver.switchTo().window(windows2);
-        WebElement channelName = driver.findElement(By.xpath("//*[@id='text']"));
+        WebElement channelName = driver.findElement(By.xpath("//div[@id='channel-header-container']//*[@id='text']"));
         String name = channelName.getText();
         Assert.assertEquals("Skillfactory", name);
+        driver.close();
+        driver.switchTo().window(windows1);
     };
 
 
     @Test
-    public void allKurs() {
-        driver.get("https://skillfactory.ru/courses");
-        List<WebElement> ellements = driver.findElements(By.xpath(" //*[text()=' ₽/мес']"));
-        System.out.println(ellements.size());
-
+    public void allKurses() {
+        driver.get(url);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.xpath("//a[text()='онлайн-курсы']"))).build().perform();
+        WebElement onlineKursi1 = driver.findElement(By.xpath("//span[text()='Все онлайн-курсы']"));
+        onlineKursi1.click();
+        WebElement onlineKursi = driver.findElement(By.xpath("//a[text()='онлайн-курсы']"));
+        int allKurses = 88;
+        List<WebElement> ellements = driver.findElements(By.xpath("//*[contains(text(), '₽')]"));
+        assertEquals(allKurses, ellements.size());
     };
 
     @Test
     public void onlineKursi() throws InterruptedException {
         driver.get(url);
-
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(By.xpath("//a[text()='онлайн-курсы']"))).build().perform();
         WebElement vseOnlineKursi = (new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Все онлайн-курсы']"))));
@@ -188,32 +183,25 @@ public class MegaTests {
         WebElement bezopasnost = (new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Безопасность']"))));
         WebElement marketing = (new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Маркетинг']"))));
         WebElement dizain = (new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Дизайн']"))));
-
     };
 
     @Test
     public void form3() throws InterruptedException {
         driver.get(url);
-        WebElement inputName = driver.findElement(By.xpath("(//input[@placeholder='Почта'])[3]"));
-        inputName.sendKeys("2@2.ru");
-
-        WebElement otpravit = driver.findElement(By.xpath("(//button[@type='submit'])[3]"));
+        WebElement mail = driver.findElement(By.xpath("//form[@name='form598180441']//input[@aria-label='email']"));
+        mail.sendKeys("2@2.ru");
+        WebElement otpravit = driver.findElement(By.xpath("//form[@name='form598180441']//button[@type='submit']"));
         otpravit.click();
-
         Thread.sleep(2000);
-
-        WebElement spasibo = driver.findElement(By.xpath("(//div[text()='Спасибо! Данные успешно отправлены.'])[2]"));
-
+        WebElement spasibo = driver.findElement(By.xpath("//div[@class='t-form-success-popup__wrapper']"));
     };
 
     @Test
     public void kontakti() {
         driver.get(url);
-
         String windows1 = driver.getWindowHandle();
-        WebElement contacts = driver.findElement(By.xpath("(//a[@href='https://skillfactory.ru/contacts'])[3]"));
+        WebElement contacts = driver.findElement(By.xpath("//div[@data-elem-id='1676892134914']//a[text()='Контакты']"));
         contacts.click();
-
         Set<String> currentWindows = driver.getWindowHandles();
         String windows2 = null;
         for (String window : currentWindows) {
@@ -222,16 +210,19 @@ public class MegaTests {
                 break;
             }
         };
-
         driver.switchTo().window(windows2);
-
         WebElement contInf = driver.findElement(By.xpath("//h1[text()='Контактная информация']"));
         String text = contInf.getText();
         Assert.assertEquals("Контактная информация", text);
-
-
+        driver.close();
+        driver.switchTo().window(windows1);
     };
 
-
-
+    @Test
+    public void otzivi() {
+        driver.get(url);
+        int all = 18;
+        List<WebElement> ellements = driver.findElements(By.xpath("//div[@data-artboard-recid='562718607']//div[@class='tn-atom__videoiframe']"));
+        assertEquals(all, ellements.size());
+    };
 };
